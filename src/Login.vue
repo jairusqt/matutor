@@ -1,7 +1,8 @@
 <template>
+  <img src="..\src\assets\graphics\studentsLP.png" alt="" className="imgStud"/>
   <div class="col-md-12 row d-flex justify-content-center ">
       <div class="col-md-7 d-flex containerField inputs ">
-        <div class="pseudoTab"></div>
+        <div class="pseudoTab">Login</div>
         <div class="col-md-7 d-flex">
           <img class="img-fluid mtrLogo" src="..\src\assets\logo\for dark bg.png" alt="">
         </div>
@@ -194,4 +195,13 @@
     color: #fff;
     background: #0099ff;
   }
+  .imgStud{
+    position: relative;
+    max-width: 33%;
+    height: auto;
+    position: absolute;
+    top: 36%;
+    left: 62%;
+    pointer-events:none;
+}
 </style>

@@ -1,7 +1,5 @@
 <template>
-  
   <div>
-    
     <input type="text" placeholder="Email">
   </div>
   <div class="col-md-12 row">
