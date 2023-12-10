@@ -1,0 +1,197 @@
+<template>
+  <div class="col-md-12 row d-flex justify-content-center ">
+      <div class="col-md-7 d-flex containerField inputs ">
+        <div class="pseudoTab"></div>
+        <div class="col-md-7 d-flex">
+          <img class="img-fluid mtrLogo" src="..\src\assets\logo\for dark bg.png" alt="">
+        </div>
+        <!-- Email field -->
+        <div class="col-md-7 d-flex input">
+          <!-- <i class="bi bi-clipboard"></i> -->
+          <i class="bi bi-envelope-at-fill"></i>
+          <input type="text" placeholder="Email" 
+          v-model="username"
+          @keyup.enter="loginClicked">
+
+        </div>
+        <!-- password field -->
+        <div class="col-md-7 d-flex input">
+          <!-- <img src="../src/assets/icons/password.png"  alt="wala"> -->
+          <i class="bi bi-lock-fill"></i>
+          <!-- text box with hidden text password -->
+          <input v-show="hidePass" type="password" placeholder="Password"
+            v-model="password"
+            @keyup.enter="loginClicked">
+          <!-- text box with show text password -->
+          <input v-show="!hidePass" type="text" placeholder="Password"
+            v-model="password"
+            @keyup.enter="loginClicked">
+            <!-- show password -->
+            <i class="bi bi-eye eye" 
+            v-show="hidePass"
+            @mouseover="hidePass = !hidePass"></i>
+            <!-- hide password -->
+            <i class="bi bi-eye-slash eye"
+            v-show="!hidePass"
+            @mouseleave="hidePass = !hidePass"></i>
+        </div>
+        <!-- buttons -->
+        <!-- <select name="" id="" v-model="role" @change="roleSelect">
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+        </select> -->
+        <div class="col-md-7 d-flex submit-container">
+            <button type="button" class="btn btn-primary buttonLogin" 
+              @click="loginClicked"
+              @keyup.enter="loginClicked">
+              Login
+            </button>
+            <button  type="button" class="btn btn-secondary buttonRegister"
+              @mouseover="registerHover(true)"
+              @mouseleave="registerHover(false)"
+              @click="registerClicked">
+              {{ registerText }}
+            </button>
+        </div>
+      </div>
+  </div>
+</template>
+
+<script>
+  export default{
+    data(){
+      return {
+        registerText: "don't have an account?",
+        hidePass: true,
+
+        user_admin: [
+          {
+            // testing 
+            email: 'admin@email.com',
+            password: '123',
+            role: 'admin',
+            username: 'Admin De la Cruz', 
+          }
+        ],
+        username: '',
+        password: '',
+        role:'',
+      }
+    },
+
+    methods:{
+      loginClicked(){
+        console.log("Login button clicked,");
+        try{
+          for(const user of this.user_admin){
+            if(user.username === this.username || user.email === this.username 
+            && user.password === this.password){
+             console.log(user.role + ' ' + user.username + ' logged in');
+            } else {
+              console.log('but incorrect credentials');
+            }
+          }
+        }catch(e){
+          console.log('[Error]: ' + e);
+        }
+      },
+      roleSelect(){
+        console.log(this.role);
+      },
+      registerClicked(){
+        console.log("Register button clicked");
+      },
+      //change text on hover
+      registerHover(boolHover){
+        if(boolHover){
+          console.log("Register hovered");
+          this.registerText = "Register Now!";
+        } else {
+          console.log("Register leave");
+          this.registerText = "don't have an account?";
+        }
+      },
+    },
+  };
+</script>
+
+<style scoped>
+  @import "bootstrap/dist/css/bootstrap.css";
+
+  /* custom css */
+  .mtrLogo{
+    /* padding-top: 10%; */
+  }
+  .containerField{
+    padding-bottom: 5%;
+    align-items: center;
+    margin-top: 10%;
+    background:  #006df3;
+    border-radius: 25px;
+    box-shadow: 0px 0px 50px #006df3;
+  }
+    /* Input fields */
+  .inputs{
+    flex-direction: column;
+    gap: 15px;
+  }
+  .input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 58%;
+    min-height: 60px;
+    /* width: 480px;
+    height: 60px; */
+    background: #eaeaea;
+    border-radius: 25px;
+  }
+  .input input{
+    background: transparent;
+    border: none;
+    outline: #797979;
+    font-size: 1.3rem;
+    width: 80%;
+  }
+  /* buttons */
+  .submit-container{
+    gap: 10%;
+    display: flex;
+    justify-content: center;
+  } 
+  .buttonLogin, .buttonRegister{
+    width: 220px;
+    height: 59px;
+    border-radius: 25px;
+    font-size: 1.13rem;
+    font-weight: 700;    
+    cursor: pointer;
+    border: 0;
+  }
+  .buttonLogin{
+    color: #fff;
+    background-color: #0099ff;
+  }
+  .buttonRegister{
+    font-weight: 350;
+    background: #eaeaea;
+    color: #676767;
+  }
+  .input i{
+    margin: 0px 5%;
+    font-size: 1.7rem;
+    color: gray;
+  }
+  .eye{
+    cursor: help;
+    font-size: 1.4rem !important;
+  }
+  .pseudoTab{
+    padding-left: 3%;
+    gap: 5px;
+    width: 103%;
+    height: 35px;
+    color: #fff;
+    background: #0099ff;
+  }
+</style>
