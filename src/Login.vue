@@ -2,7 +2,7 @@
   <img src="..\src\assets\graphics\studentsLP.png" alt="" className="imgStud"/>
   <div class="col-md-12 row d-flex justify-content-center ">
       <div class="col-md-7 d-flex containerField inputs ">
-        <div class="pseudoTab">Login</div>
+        <div class="col-md-12 d-flex pseudoTab">Login</div>
         <div class="col-md-7 d-flex">
           <img class="img-fluid mtrLogo" src="..\src\assets\logo\for dark bg.png" alt="">
         </div>
@@ -124,13 +124,29 @@
     /* padding-top: 10%; */
   }
   .containerField{
-    padding-bottom: 5%;
+    margin-top: 8%;
+    padding: 0;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     align-items: center;
-    margin-top: 10%;
     background:  #006df3;
-    border-radius: 25px;
     box-shadow: 0px 0px 50px #006df3;
   }
+  .pseudoTab{
+    padding-left: 3%;
+    height: 6.5%;
+    color: #fff;
+    background: #0099ff;
+  }
+  .imgStud{
+    position: relative;
+    max-width: 33%;
+    height: auto;
+    position: absolute;
+    top: 35%;
+    left: 62%;
+    pointer-events:none;
+}
     /* Input fields */
   .inputs{
     flex-direction: column;
@@ -157,6 +173,7 @@
   /* buttons */
   .submit-container{
     gap: 10%;
+    padding: 1% 0% 3% 0%;
     display: flex;
     justify-content: center;
   } 
@@ -168,6 +185,7 @@
     font-weight: 700;    
     cursor: pointer;
     border: 0;
+    
   }
   .buttonLogin{
     color: #fff;
@@ -177,6 +195,7 @@
     font-weight: 350;
     background: #eaeaea;
     color: #676767;
+    font-size: 1rem !important;
   }
   .input i{
     margin: 0px 5%;
@@ -185,23 +204,5 @@
   }
   .eye{
     cursor: help;
-    font-size: 1.4rem !important;
   }
-  .pseudoTab{
-    padding-left: 3%;
-    gap: 5px;
-    width: 103%;
-    height: 35px;
-    color: #fff;
-    background: #0099ff;
-  }
-  .imgStud{
-    position: relative;
-    max-width: 33%;
-    height: auto;
-    position: absolute;
-    top: 36%;
-    left: 62%;
-    pointer-events:none;
-}
 </style>
