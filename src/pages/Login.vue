@@ -13,8 +13,8 @@
           <input type="text" placeholder="Email" 
           v-model="username"
           @keyup.enter="loginClicked">
-
         </div>
+        
         <!-- password field -->
         <div class="col-md-7 d-flex input">
           <!-- <img src="../src/assets/icons/password.png"  alt="wala"> -->
@@ -111,6 +111,15 @@
 
 <style scoped>
   @import "bootstrap/dist/css/bootstrap.css";
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
 
   /* custom css */
   .containerField{

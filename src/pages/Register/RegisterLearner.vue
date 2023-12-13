@@ -183,7 +183,7 @@ import router from '../../router';
       },
       getFields(){
         
-      }
+      },
     },
   };
 </script>

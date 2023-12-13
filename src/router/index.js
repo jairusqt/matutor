@@ -8,11 +8,31 @@ import {createRouter, createWebHistory } from 'vue-router'
 
 
 const routes = [
-    {path: '/', name: 'Landing', component: Landing},
-    {path: '/login', name: 'Login', component: Login},
-    {path: '/register-learner', name: 'RegisterLearner', component: RegisterLearner},
-    {path: '/register-tutor', name: 'RegisterTutor', component: RegisterTutor},
-    {path: '/register-tutorcenter', name: 'RegisterTutorCenter', component: RegisterTutorCenter},
+    {   
+        path: '/', 
+        name: 'Landing', 
+        component: Landing
+    },
+    {
+        path: '/login', 
+        name: 'Login', 
+        component: Login
+    },
+    {
+        path: '/register-learner', 
+        name: 'RegisterLearner', 
+        component: RegisterLearner
+    },
+    {
+        path: '/register-tutor', 
+        name: 'RegisterTutor', 
+        component: RegisterTutor
+    },
+    {
+        path: '/register-tutorcenter', 
+        name: 'RegisterTutorCenter', 
+        component: RegisterTutorCenter
+    },
 ]
 
 const router = createRouter({
