@@ -1,7 +1,12 @@
 //main.js
 import { createApp } from 'vue'
+
+import router from './router'
 import "bootstrap/dist/css/bootstrap.css"
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import Login from './Login.vue'
 
-createApp(Login).mount('#app')
+import App from './App.vue'
+
+createApp(App)
+.use(router)
+.mount('#app')

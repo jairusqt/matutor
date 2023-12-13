@@ -1,13 +1,13 @@
 <template>
-  <img src="..\src\assets\graphics\studentsLP.png" alt="" className="imgStud"/>
+  <img src="..\assets\graphics\studentsLP.png" alt="" class="imgStud"/>
   <div class="col-md-12 row d-flex justify-content-center ">
       <div class="col-md-7 d-flex containerField inputs ">
         <div class="col-md-12 d-flex pseudoTab">Login</div>
         <div class="col-md-7 d-flex">
-          <img class="img-fluid mtrLogo" src="..\src\assets\logo\for dark bg.png" alt="">
+          <img class="img-fluid" src="..\assets\logo\for dark bg.png" alt="">
         </div>
         <!-- Email field -->
-        <div class="col-md-7 d-flex input">
+        <div class="col-md-12 d-flex input">
           <!-- <i class="bi bi-clipboard"></i> -->
           <i class="bi bi-envelope-at-fill"></i>
           <input type="text" placeholder="Email" 
@@ -42,17 +42,18 @@
           <option value="admin">admin</option>
         </select> -->
         <div class="col-md-7 d-flex submit-container">
-            <button type="button" class="btn btn-primary buttonLogin" 
-              @click="loginClicked"
-              @keyup.enter="loginClicked">
-              Login
-            </button>
-            <button  type="button" class="btn btn-secondary buttonRegister"
-              @mouseover="registerHover(true)"
-              @mouseleave="registerHover(false)"
-              @click="registerClicked">
-              {{ registerText }}
-            </button>
+          <button type="button" class="btn btn-primary buttonLogin" 
+            @click="loginClicked"
+            @keyup.enter="loginClicked">
+            Login
+          </button>
+          <router-link to="/register-learner"
+            class="btn btn-secondary buttonRegister"
+            @mouseover="registerText ='Register Now!'"
+            @mouseleave="registerText ='New to Matutor?'"
+            @click="registerClicked">
+            {{ registerText }}
+          </router-link>
         </div>
       </div>
   </div>
@@ -62,7 +63,7 @@
   export default{
     data(){
       return {
-        registerText: "don't have an account?",
+        registerText: "New to Matutor?",
         hidePass: true,
 
         user_admin: [
@@ -103,15 +104,7 @@
         console.log("Register button clicked");
       },
       //change text on hover
-      registerHover(boolHover){
-        if(boolHover){
-          console.log("Register hovered");
-          this.registerText = "Register Now!";
-        } else {
-          console.log("Register leave");
-          this.registerText = "don't have an account?";
-        }
-      },
+     
     },
   };
 </script>
@@ -120,9 +113,6 @@
   @import "bootstrap/dist/css/bootstrap.css";
 
   /* custom css */
-  .mtrLogo{
-    /* padding-top: 10%; */
-  }
   .containerField{
     margin-top: 8%;
     padding: 0;
@@ -183,19 +173,19 @@
     border-radius: 25px;
     font-size: 1.13rem;
     font-weight: 700;    
-    cursor: pointer;
     border: 0;
-    
+    text-decoration: none;
+    text-align: center;
+    text-align: center;
+    line-height: 2.5;
   }
   .buttonLogin{
     color: #fff;
     background-color: #0099ff;
   }
   .buttonRegister{
-    font-weight: 350;
-    background: #eaeaea;
-    color: #676767;
-    font-size: 1rem !important;
+    font-weight: 450;
+    background: #7bcaff;
   }
   .input i{
     margin: 0px 5%;
