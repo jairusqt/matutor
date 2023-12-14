@@ -1,119 +1,115 @@
 <template>
-  <router-view>
-    <div class="col-md-12 row d-flex justify-content-center ">
-        <div class="col-md-7 d-flex containerField inputs">
-          <select
-          v-model="role" 
-          @change="roleSelect">
-            <option value="Learner">Learner</option>
-            <option value="Tutor">Tutor</option>
-            <option value="Tutoring Center">Tutoring Center</option>
-          </select>
+  <div class="col-md-12 row d-flex justify-content-center ">
+    <div class="col-md-7 d-flex containerField inputs">
+      <select
+      v-model="role" 
+      @change="roleSelect">
+        <option value="Learner">Learner</option>
+        <option value="Tutor">Tutor</option>
+        <option value="Tutoring Center">Tutoring Center</option>
+      </select>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-envelope-at-fill"></i>
+        <input type="text" placeholder="Learner's Email" 
+        v-model="learnerEmail">
+      </div>
+        <div class="col-md-12 d-flex input">
+        <i class="bi bi-person-fill-up"></i>
+        <input type="text" placeholder="Learner's First Name" 
+        v-model="learnerFirstname">
+      </div>
 
-          <div class="col-md-12 d-flex input">
-            <i class="bi bi-envelope-at-fill"></i>
-            <input type="text" placeholder="Learner's Email" 
-            v-model="learnerEmail">
-           </div>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-person-fill-down"></i>
+        <input type="text" placeholder="Learner's Last Name" 
+        v-model="learnerLastName">
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-person-fill-up"></i>
-            <input type="text" placeholder="Learner's First Name" 
-            v-model="learnerFirstname">
-           </div>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-person-badge-fill"></i>
+        <input type="text" placeholder="Guardian / Parent's Full Name" 
+        v-model="learnerGuardianName">
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-person-fill-down"></i>
-            <input type="text" placeholder="Learner's Last Name" 
-            v-model="learnerLastName">
-           </div>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-envelope-at-fill"></i>
+        <input type="text" placeholder="Guardian / Parent's Email" 
+          v-model="learnerGuardianEmail">
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-person-badge-fill"></i>
-            <input type="text" placeholder="Guardian / Parent's Full Name" 
-            v-model="learnerGuardianName">
-           </div>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-telephone-plus-fill"></i>
+        <input type="text" placeholder="Contact Number" 
+          v-model="learnerContact">
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-envelope-at-fill"></i>
-            <input type="text" placeholder="Guardian / Parent's Email" 
-            v-model="learnerGuardianEmail">
-           </div>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-house-door-fill"></i>
+        <input type="text" placeholder="Address" 
+          v-model="learnerAddress">
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-telephone-plus-fill"></i>
-            <input type="text" placeholder="Contact Number" 
-            v-model="learnerContact">
-           </div>
+      <div class="col-md-12 d-flex input">
+        <i class="bi bi-cake-fill"></i>
+        <input type="date" placeholder="Birthdate" 
+          v-model="learnerBdate"/>
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-house-door-fill"></i>
-            <input type="text" placeholder="Address" 
-            v-model="learnerAddress">
-           </div>
+      <div class="col-md-7 d-flex input">
+        <i class="bi bi-lock-fill"></i>
+        <!-- text box with hidden text password -->
+        <input v-show="hidePass" type="password" placeholder="Password"
+          v-model="learnerPassword"
+          @keyup.enter="registerClicked">
+        <!-- text box with show text password -->
+        <input v-show="!hidePass" type="text" placeholder="Password"
+          v-model="learnerPassword"
+          @keyup.enter="registerClicked">
+        <!-- show password -->
+        <i class="bi bi-eye eye" 
+          v-show="hidePass"
+          @mouseover="hidePass = !hidePass"></i>
+        <!-- hide password -->
+        <i class="bi bi-eye-slash eye"
+          v-show="!hidePass"
+          @mouseleave="hidePass = !hidePass"></i>
+      </div>
 
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-cake-fill"></i>
-            <input type="date" placeholder="Birthdate" 
-            v-model="learnerBdate"/>
-          </div>
+      <!-- Confirm Password -->
+      <div class="col-md-7 d-flex input">
+        <i class="bi bi-lock-fill"></i>
+        <!-- text box with hidden text password -->
+        <input v-show="hidePass" type="password" placeholder="Confirm Password"
+          v-model="password2"
+          @keyup.enter="registerClicked">
+        <!-- text box with show text password -->
+        <input v-show="!hidePass" type="text" placeholder="Confirm Password"
+          v-model="password2"
+          @keyup.enter="registerClicked">
+        <!-- show password -->
+        <!-- <i class="bi bi-eye eye" 
+        v-show="hidePass"
+        @mouseover="hidePass = !hidePass"></i> -->
+        <!-- hide password -->
+        <!-- <i class="bi bi-eye-slash eye"
+        v-show="!hidePass"
+        @mouseleave="hidePass = !hidePass"></i> -->
+      </div>
 
-          <div class="col-md-7 d-flex input">
-            <i class="bi bi-lock-fill"></i>
-            <!-- text box with hidden text password -->
-            <input v-show="hidePass" type="password" placeholder="Password"
-              v-model="learnerPassword"
-              @keyup.enter="registerClicked">
-            <!-- text box with show text password -->
-            <input v-show="!hidePass" type="text" placeholder="Password"
-              v-model="learnerPassword"
-              @keyup.enter="registerClicked">
-              <!-- show password -->
-              <i class="bi bi-eye eye" 
-              v-show="hidePass"
-              @mouseover="hidePass = !hidePass"></i>
-              <!-- hide password -->
-              <i class="bi bi-eye-slash eye"
-              v-show="!hidePass"
-              @mouseleave="hidePass = !hidePass"></i>
-          </div>
-
-          <!-- Confirm Password -->
-          <div class="col-md-7 d-flex input">
-            <i class="bi bi-lock-fill"></i>
-            <!-- text box with hidden text password -->
-            <input v-show="hidePass" type="password" placeholder="Confirm Password"
-              v-model="password2"
-              @keyup.enter="registerClicked">
-            <!-- text box with show text password -->
-            <input v-show="!hidePass" type="text" placeholder="Confirm Password"
-              v-model="password2"
-              @keyup.enter="registerClicked">
-              <!-- show password -->
-              <!-- <i class="bi bi-eye eye" 
-              v-show="hidePass"
-              @mouseover="hidePass = !hidePass"></i> -->
-              <!-- hide password -->
-              <!-- <i class="bi bi-eye-slash eye"
-              v-show="!hidePass"
-              @mouseleave="hidePass = !hidePass"></i> -->
-          </div>
-
-          <div class="col-md-7 d-flex submit-container">
-          <button type="button" class="btn btn-primary buttonLogin" 
-            @click="registerClicked">
-            Register
-          </button>
-          <router-link to="/login"
-            class="btn btn-secondary buttonRegister"
-            @mouseover="loginText ='Login'"
-            @mouseleave="loginText ='Already Have an Account?'">
+      <div class="col-md-7 d-flex submit-container">
+        <button type="button" class="btn btn-primary buttonLogin" 
+          @click="registerClicked">
+          Register
+        </button>
+        <router-link to="/login"
+          class="btn btn-secondary buttonRegister"
+          @mouseover="loginText ='Login'"
+          @mouseleave="loginText ='Already Have an Account?'">
             {{ loginText }}
-          </router-link>
-        </div>
-        </div>
+        </router-link>
+      </div>
     </div>
-  </router-view>
+  </div>
 </template>
 
 <script>
@@ -191,6 +187,7 @@ import router from '../../router';
 <style scoped>
   @import "bootstrap/dist/css/bootstrap.css";
 
+  /* transitions */
   /* custom css */
   .containerField{
     margin-top: 3%;

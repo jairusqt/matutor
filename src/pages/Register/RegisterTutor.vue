@@ -87,19 +87,19 @@
           </div>
 
           <div class="col-md-7 d-flex submit-container">
-          <button type="button" class="btn btn-primary buttonLogin" 
-            @click="registerClicked">
-            Register
-          </button>
-          <router-link to="/login"
-            class="btn btn-secondary buttonRegister"
-            @mouseover="loginText ='Login'"
-            @mouseleave="loginText ='Already Have an Account?'">
-            {{ loginText }}
-          </router-link>
-        </div>
-        </div>
+        <button type="button" class="btn btn-primary buttonLogin" 
+          @click="registerClicked">
+          Register
+        </button>
+        <router-link to="/login"
+          class="btn btn-secondary buttonRegister"
+          @mouseover="loginText ='Login'"
+          @mouseleave="loginText ='Already Have an Account?'">
+          {{ loginText }}
+        </router-link>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

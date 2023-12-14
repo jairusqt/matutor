@@ -6,6 +6,7 @@
         <div class="col-md-7 d-flex">
           <img class="img-fluid" src="..\assets\logo\for dark bg.png" alt="">
         </div>
+        
         <!-- Email field -->
         <div class="col-md-12 d-flex input">
           <!-- <i class="bi bi-clipboard"></i> -->
@@ -14,7 +15,7 @@
           v-model="username"
           @keyup.enter="loginClicked">
         </div>
-        
+
         <!-- password field -->
         <div class="col-md-7 d-flex input">
           <!-- <img src="../src/assets/icons/password.png"  alt="wala"> -->
@@ -47,19 +48,20 @@
             @keyup.enter="loginClicked">
             Login
           </button>
-          <router-link to="/register-learner"
-            class="btn btn-secondary buttonRegister"
+          <button type="button" class="btn btn-secondary buttonRegister"
             @mouseover="registerText ='Register Now!'"
             @mouseleave="registerText ='New to Matutor?'"
             @click="registerClicked">
             {{ registerText }}
-          </router-link>
+        </button>
         </div>
       </div>
   </div>
 </template>
 
 <script>
+import router from '../router';
+
   export default{
     data(){
       return {
@@ -101,7 +103,8 @@
         console.log(this.role);
       },
       registerClicked(){
-        console.log("Register button clicked");
+        console.log('register btn clicked');
+        router.push('/register-tutorcenter');
       },
       //change text on hover
      

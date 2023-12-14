@@ -1,7 +1,7 @@
 <template>
-    <div class="col-md-12 row d-flex justify-content-center ">
-        <div class="col-md-7 d-flex containerField inputs">
-          <select
+  <div class="col-md-12 row d-flex justify-content-center ">
+    <div class="col-md-7 d-flex containerField inputs">
+      <select
           v-model="role" 
           @change="roleSelect">
             <option value="Learner">Learner</option>
