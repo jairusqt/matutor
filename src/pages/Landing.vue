@@ -2,12 +2,16 @@
   <div  style="margin-top: 5%;" class="col-md-12 row d-flex justify-content-center">
     <!--  -->
     <div class="col-md-5 box1">
-      <img src="..\assets\graphics\what is matutor.png" 
+      <transition name="inRight" appear>
+        <img src="..\assets\graphics\what is matutor.png" 
         alt="Matutor Logo" 
         class="img-fluid whatIMG"/>
-      <div class="paragraph">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consectetur aliquam mi quis vehicula. Praesent aliquet neque metus, eu mollis ante bibendum nec. Suspendisse nunc leo, pellentesque vitae semper in, consequat non tortor. Curabitur arcu purus, mollis in blandit et, imperdiet a lectus. In fermentum vehicula ultrices. 
-      </div>
+      </transition>
+      <transition name="fadeLong" appear>
+        <div class="paragraph">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consectetur aliquam mi quis vehicula. Praesent aliquet neque metus, eu mollis ante bibendum nec. Suspendisse nunc leo, pellentesque vitae semper in, consequat non tortor. Curabitur arcu purus, mollis in blandit et, imperdiet a lectus. In fermentum vehicula ultrices. 
+        </div>
+      </transition>
       <router-link to="/login"
         class="btn btn-primary button">
         Ready to Join Us?
@@ -18,8 +22,11 @@
       </p>
     </div>
     <!--  -->
+    
     <div class="col-md-6 box2">
-      <img src="..\assets\graphics\students.png" alt="" class="studentsLP"/>
+      <transition name="inLeft" appear>
+        <img src="..\assets\graphics\students.png" alt="" class="studentsLP"/>
+      </transition>
     </div>
   </div>
   

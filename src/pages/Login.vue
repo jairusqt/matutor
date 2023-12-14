@@ -1,60 +1,71 @@
 <template>
-  <img src="..\assets\graphics\studentsLP.png" alt="" class="imgStud"/>
+  <transition name="inLeft" appear>
+    <img src="..\assets\graphics\studentsLP.png" alt="" class="imgStud"/>
+  </transition>
   <div class="col-md-12 row d-flex justify-content-center ">
       <div class="col-md-7 d-flex containerField inputs ">
         <div class="col-md-12 d-flex pseudoTab">Login</div>
-        <div class="col-md-7 d-flex">
-          <img class="img-fluid" src="..\assets\logo\for dark bg.png" alt="">
-        </div>
-        
+        <transition name="fade" appear>
+          <div class="col-md-7 d-flex">
+            <img class="img-fluid" src="..\assets\logo\for dark bg.png" alt="">
+          </div>
+        </transition>
+          
         <!-- Email field -->
-        <div class="col-md-12 d-flex input">
-          <!-- <i class="bi bi-clipboard"></i> -->
-          <i class="bi bi-envelope-at-fill"></i>
-          <input type="text" placeholder="Email" 
-          v-model="username"
-          @keyup.enter="loginClicked">
-        </div>
-
-        <!-- password field -->
-        <div class="col-md-7 d-flex input">
-          <!-- <img src="../src/assets/icons/password.png"  alt="wala"> -->
-          <i class="bi bi-lock-fill"></i>
-          <!-- text box with hidden text password -->
-          <input v-show="hidePass" type="password" placeholder="Password"
-            v-model="password"
+        <transition name="inLeft" appear>
+          <div class="col-md-12 d-flex input">
+            <!-- <i class="bi bi-clipboard"></i> -->
+            <i class="bi bi-envelope-at-fill"></i>
+            <input type="text" placeholder="Email" 
+            v-model="username"
             @keyup.enter="loginClicked">
-          <!-- text box with show text password -->
-          <input v-show="!hidePass" type="text" placeholder="Password"
-            v-model="password"
-            @keyup.enter="loginClicked">
-            <!-- show password -->
-            <i class="bi bi-eye eye" 
-            v-show="hidePass"
-            @mouseover="hidePass = !hidePass"></i>
-            <!-- hide password -->
-            <i class="bi bi-eye-slash eye"
-            v-show="!hidePass"
-            @mouseleave="hidePass = !hidePass"></i>
-        </div>
+          </div>
+        </transition>
+        <transition name="inRight" appear>
+          <!-- password field -->
+          <div class="col-md-7 d-flex input">
+            <!-- <img src="../src/assets/icons/password.png"  alt="wala"> -->
+            <i class="bi bi-lock-fill"></i>
+            <!-- text box with hidden text password -->
+            <input v-show="hidePass" type="password" placeholder="Password"
+              v-model="password"
+              @keyup.enter="loginClicked">
+            <!-- text box with show text password -->
+            <input v-show="!hidePass" type="text" placeholder="Password"
+              v-model="password"
+              @keyup.enter="loginClicked">
+              <!-- show password -->
+              <i class="bi bi-eye eye" 
+              v-show="hidePass"
+              @mouseover="hidePass = !hidePass"></i>
+              <!-- hide password -->
+              <i class="bi bi-eye-slash eye"
+              v-show="!hidePass"
+              @mouseleave="hidePass = !hidePass"></i>
+          </div>
+        </transition>
         <!-- buttons -->
         <!-- <select name="" id="" v-model="role" @change="roleSelect">
           <option value="user">user</option>
           <option value="admin">admin</option>
         </select> -->
-        <div class="col-md-7 d-flex submit-container">
-          <button type="button" class="btn btn-primary buttonLogin" 
-            @click="loginClicked"
-            @keyup.enter="loginClicked">
-            Login
-          </button>
-          <button type="button" class="btn btn-secondary buttonRegister"
-            @mouseover="registerText ='Register Now!'"
-            @mouseleave="registerText ='New to Matutor?'"
-            @click="registerClicked">
-            {{ registerText }}
-        </button>
-        </div>
+        <transition name="fadeLong" appear>
+          <div class="col-md-7 d-flex submit-container">
+          
+            <button type="button" class="btn btn-primary buttonLogin" 
+              @click="loginClicked"
+              @keyup.enter="loginClicked">
+              Login
+            </button>
+          
+            <button type="button" class="btn btn-secondary buttonRegister"
+              @mouseover="registerText ='Register Now!'"
+              @mouseleave="registerText ='New to Matutor?'"
+              @click="registerClicked">
+              {{ registerText }}
+            </button>
+         </div>
+       </transition>
       </div>
   </div>
 </template>
@@ -114,16 +125,7 @@ import router from '../router';
 
 <style scoped>
   @import "bootstrap/dist/css/bootstrap.css";
-
-  .v-enter-active,
-  .v-leave-active {
-    transition: opacity 0.5s ease;
-  }
-  .v-enter-from,
-  .v-leave-to {
-    opacity: 0;
-  }
-
+  
   /* custom css */
   .containerField{
     margin-top: 8%;

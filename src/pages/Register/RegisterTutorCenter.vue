@@ -8,78 +8,84 @@
             <option value="Tutor">Tutor</option>
             <option value="Tutoring Center">Tutoring Center</option>
           </select>
-
-          <div class="col-md-12 d-flex input">
-            <i class="bi bi-envelope-at-fill"></i>
-            <input type="text" placeholder="Tutor Center Email" 
-            v-model="learnerEmail">
-           </div>
-
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-person-fill-up"></i>
-            <input type="text" placeholder="Tutor Center Name" 
-            v-model="learnerFirstname">
-           </div>
-
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-telephone-plus-fill"></i>
-            <input type="text" placeholder="Contact Number" 
-            v-model="learnerContact">
-           </div>
-
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-house-door-fill"></i>
-            <input type="text" placeholder="Address" 
-            v-model="learnerAddress">
-           </div>
-
-           <div class="col-md-12 d-flex input">
-            <i class="bi bi-cake-fill"></i>
-            <input type="date" placeholder="Birthdate" 
-            v-model="learnerBdate"/>
-          </div>
-
-          <div class="col-md-7 d-flex input">
-            <i class="bi bi-lock-fill"></i>
-            <!-- text box with hidden text password -->
-            <input v-show="hidePass" type="password" placeholder="Password"
-              v-model="learnerPassword"
-              @keyup.enter="registerClicked">
-            <!-- text box with show text password -->
-            <input v-show="!hidePass" type="text" placeholder="Password"
-              v-model="learnerPassword"
-              @keyup.enter="registerClicked">
-              <!-- show password -->
-              <i class="bi bi-eye eye" 
-              v-show="hidePass"
-              @mouseover="hidePass = !hidePass"></i>
-              <!-- hide password -->
-              <i class="bi bi-eye-slash eye"
-              v-show="!hidePass"
-              @mouseleave="hidePass = !hidePass"></i>
-          </div>
-
-          <!-- Confirm Password -->
-          <div class="col-md-7 d-flex input">
-            <i class="bi bi-lock-fill"></i>
-            <!-- text box with hidden text password -->
-            <input v-show="hidePass" type="password" placeholder="Confirm Password"
-              v-model="password2"
-              @keyup.enter="registerClicked">
-            <!-- text box with show text password -->
-            <input v-show="!hidePass" type="text" placeholder="Confirm Password"
-              v-model="password2"
-              @keyup.enter="registerClicked">
-              <!-- show password -->
-              <!-- <i class="bi bi-eye eye" 
-              v-show="hidePass"
-              @mouseover="hidePass = !hidePass"></i> -->
-              <!-- hide password -->
-              <!-- <i class="bi bi-eye-slash eye"
-              v-show="!hidePass"
-              @mouseleave="hidePass = !hidePass"></i> -->
-          </div>
-
+          <transition name="inLeft" appear>
+            <div class="col-md-12 d-flex input">
+              <i class="bi bi-envelope-at-fill"></i>
+              <input type="text" placeholder="Tutor Center Email" 
+              v-model="learnerEmail">
+            </div>
+          </transition>
+          <transition name="inRight" appear>
+            <div class="col-md-12 d-flex input">
+              <i class="bi bi-person-fill-up"></i>
+              <input type="text" placeholder="Tutor Center Name" 
+              v-model="learnerFirstname">
+            </div>
+          </transition>
+          <transition name="inLeft" appear>
+            <div class="col-md-12 d-flex input">
+              <i class="bi bi-telephone-plus-fill"></i>
+              <input type="text" placeholder="Contact Number" 
+              v-model="learnerContact">
+            </div>
+          </transition>
+          <transition name="inRight" appear>
+            <div class="col-md-12 d-flex input">
+              <i class="bi bi-house-door-fill"></i>
+              <input type="text" placeholder="Address" 
+              v-model="learnerAddress">
+            </div>
+          </transition>
+          <transition name="inLeft" appear>
+            <div class="col-md-12 d-flex input">
+              <i class="bi bi-cake-fill"></i>
+              <input type="date" placeholder="Birthdate" 
+              v-model="learnerBdate"/>
+            </div>
+          </transition>
+          <transition name="inRight" appear>
+            <div class="col-md-7 d-flex input">
+              <i class="bi bi-lock-fill"></i>
+              <!-- text box with hidden text password -->
+              <input v-show="hidePass" type="password" placeholder="Password"
+                v-model="learnerPassword"
+                @keyup.enter="registerClicked">
+              <!-- text box with show text password -->
+              <input v-show="!hidePass" type="text" placeholder="Password"
+                v-model="learnerPassword"
+                @keyup.enter="registerClicked">
+                <!-- show password -->
+                <i class="bi bi-eye eye" 
+                v-show="hidePass"
+                @mouseover="hidePass = !hidePass"></i>
+                <!-- hide password -->
+                <i class="bi bi-eye-slash eye"
+                v-show="!hidePass"
+                @mouseleave="hidePass = !hidePass"></i>
+            </div>
+          </transition>
+          <transition name="inLeft" appear>
+            <!-- Confirm Password -->
+            <div class="col-md-7 d-flex input">
+              <i class="bi bi-lock-fill"></i>
+              <!-- text box with hidden text password -->
+              <input v-show="hidePass" type="password" placeholder="Confirm Password"
+                v-model="password2"
+                @keyup.enter="registerClicked">
+              <!-- text box with show text password -->
+              <input v-show="!hidePass" type="text" placeholder="Confirm Password"
+                v-model="password2"
+                @keyup.enter="registerClicked">
+                <!-- show password -->
+                <!-- <i class="bi bi-eye eye" 
+                v-show="hidePass"
+                @mouseover="hidePass = !hidePass"></i> -->
+                <!-- hide password -->
+                <!-- <i class="bi bi-eye-slash eye"
+                v-show="!hidePass"
+                @mouseleave="hidePass = !hidePass"></i> -->
+            </div>
+          </transition>
           <div class="col-md-7 d-flex submit-container">
           <button type="button" class="btn btn-primary buttonLogin" 
             @click="registerClicked">
