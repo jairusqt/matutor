@@ -3,6 +3,7 @@ import Landing from '../pages/Landing.vue'
 import RegisterLearner from '../pages/Register/RegisterLearner.vue'
 import RegisterTutor from '../pages/Register/RegisterTutor.vue'
 import RegisterTutorCenter from '../pages/Register/RegisterTutorCenter.vue'
+import adminDashboard from '../pages/admin/admin_dash.vue'
 
 import {createRouter, createWebHistory } from 'vue-router'
 
@@ -33,6 +34,11 @@ const routes = [
         name: 'RegisterTutorCenter', 
         component: RegisterTutorCenter
     },
+    {
+        path: '/admin-dashboard',
+        name: 'admin_dashboard',
+        component: adminDashboard
+    }
 ]
 
 const router = createRouter({

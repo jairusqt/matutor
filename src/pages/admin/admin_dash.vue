@@ -1,5 +1,5 @@
 <template>
-  admin dashboard
+  admin dashboard (unescured)
 </template>
 
 <script>

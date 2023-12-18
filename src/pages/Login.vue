@@ -102,6 +102,7 @@ import router from '../router';
             if(user.username === this.username || user.email === this.username 
             && user.password === this.password){
              console.log(user.role + ' ' + user.username + ' logged in');
+             router.push('/admin-dashboard');
             } else {
               console.log('but incorrect credentials');
             }
