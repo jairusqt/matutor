@@ -12,55 +12,39 @@
             <div class="col-md-12 d-flex input">
               <i class="bi bi-envelope-at-fill"></i>
               <input type="text" placeholder="Tutor Center Email" 
-              v-model="learnerEmail">
+              v-model="email">
             </div>
           </transition>
           <transition name="inRight" appear>
             <div class="col-md-12 d-flex input">
               <i class="bi bi-person-fill-up"></i>
               <input type="text" placeholder="Tutor Center Name" 
-              v-model="learnerFirstname">
+              v-model="name">
             </div>
           </transition>
           <transition name="inLeft" appear>
             <div class="col-md-12 d-flex input">
               <i class="bi bi-telephone-plus-fill"></i>
               <input type="text" placeholder="Contact Number" 
-              v-model="learnerContact">
+              v-model="contactNumber">
             </div>
           </transition>
           <transition name="inRight" appear>
             <div class="col-md-12 d-flex input">
               <i class="bi bi-house-door-fill"></i>
               <input type="text" placeholder="Address" 
-              v-model="learnerAddress">
-            </div>
-          </transition>
-          <transition name="inLeft" appear>
-            <div class="col-md-12 d-flex input">
-              <i class="bi bi-cake-fill"></i>
-              <input type="date" placeholder="Birthdate" 
-              v-model="learnerBdate"/>
+              v-model="address">
             </div>
           </transition>
           <transition name="inRight" appear>
             <div class="col-md-7 d-flex input">
               <i class="bi bi-lock-fill"></i>
               <!-- text box with hidden text password -->
-              <input v-show="hidePass" type="password" placeholder="Password"
-                v-model="learnerPassword"
+              <input :type="hidePass === true ? 'password':'text'" placeholder="Password"
+                v-model="password"
                 @keyup.enter="registerClicked">
-              <!-- text box with show text password -->
-              <input v-show="!hidePass" type="text" placeholder="Password"
-                v-model="learnerPassword"
-                @keyup.enter="registerClicked">
-                <!-- show password -->
-                <i class="bi bi-eye eye" 
-                v-show="hidePass"
-                @mouseover="hidePass = !hidePass"></i>
-                <!-- hide password -->
-                <i class="bi bi-eye-slash eye"
-                v-show="!hidePass"
+                <i :class="hidePass === true ? 'bi bi-eye eye':'bi bi-eye-slash eye'" 
+                @mouseover="hidePass = !hidePass"
                 @mouseleave="hidePass = !hidePass"></i>
             </div>
           </transition>
@@ -104,7 +88,9 @@
 
 <script>
 import router from '../../router';
-
+import { db } from '../../firebase';
+import { collection, addDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
   export default{
     data(){
       return {
@@ -112,18 +98,12 @@ import router from '../../router';
         hidePass: true,
         loginText: 'Already Have an Account?',
         
-        learnerUid: '',
-        learnerEmail: '',
-        learnerFirstname: '',
-        learnerLastName: '',
+        email: '',
+        name: '',
+        contactNumber: '',
+        address: '',
+        password: '',
 
-        learnerGuardianName: '',
-        learnerGuardianEmail: '',
-        learnerContact: '',
-        learnerAddress: '',
-        learnerBdate: '',
-        learnerAge: '',
-        learnerPassword: '',
         password2: '',
 
         // learnerIdBackImage: '',
@@ -140,17 +120,27 @@ import router from '../../router';
           router.push('/register-learner')
         }
       },
-      registerClicked(){
-        // console.log("Register button clicked,");
-        if(this.passIsEmpty()){
-          console.log("Password is empty");
-        } else {
-          if(this.confirmPassword()){
-            console.log("Password is matched");
-          } else {
-            console.log("Password did not match");
-          }
-        }
+      async registerClicked(){
+        
+        const docRef = await addDoc(collection(db, "all_users/admin/admin"), {
+          address: this.address,
+          contactNumber: this.contactNumber,
+          email: this.email,
+          name: this.name,
+          password: this.password
+        });
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(error.message)
+      });
       },
       passIsEmpty(){
         if(this.learnerPassword === '' || this.password2 === '' 

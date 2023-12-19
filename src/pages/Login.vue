@@ -92,6 +92,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            console.log(user);
             if(user.email === 'testdev@hotmail.com'){
               router.push('/admin-dashboard');
             }

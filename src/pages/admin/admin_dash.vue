@@ -1,15 +1,38 @@
 <template>
-  <div class="text-bg-dark">
-    <div class="container">
-      <table>
-
+  <div class="text-bg-dark" style="height: 100vh;">
+    <div class="container p-5">
+      <table class="table table-responsive bg-light">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>BirthDate</th>
+            <th>Email</th>
+            <th>Guardian</th>
+            <th>Interest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="learner of learnerList">
+            <td>{{ learner.userFirstname + ' ' + learner.userLastname }}</td>
+            <td>{{ learner.userAge }}</td>
+            <td>{{ learner.userBdate }}</td>
+            <td>{{ learner.userEmail }}</td>
+            <td>{{ learner.userGuardianName }}</td>
+            <td>
+              <span class="badge text-bg-dark" v-for="tag in learner.userTag">
+                {{ tag }}
+              </span><br>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { auth } from '../../firebase';
 import { db } from '../../firebase';
 import { collection, getDocs } from "firebase/firestore"; 
@@ -17,7 +40,7 @@ import { collection, getDocs } from "firebase/firestore";
     data(){
       return {
         currentUser: '',
-      }
+        learnerList: [],      }
     },
     setup(){
       // const user = ref(null);
@@ -46,8 +69,8 @@ import { collection, getDocs } from "firebase/firestore";
 
       const querySnapshot = await getDocs(collection(db, "all_users/learner/users"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-        console.log(`${doc.id} => ${doc.userName}`);
+        this.learnerList.push(doc.data());
+        console.log(this.learnerList)
       });
 
     }
