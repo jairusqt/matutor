@@ -72,44 +72,37 @@
 
 <script>
 import router from '../router';
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
   export default{
     data(){
       return {
         registerText: "New to Matutor?",
         hidePass: true,
 
-        user_admin: [
-          {
-            // testing 
-            email: 'admin@email.com',
-            password: '123',
-            role: 'admin',
-            username: 'Admin De la Cruz', 
-          }
-        ],
-        username: '',
-        password: '',
+        username: 'testdev@hotmail.com',
+        password: 'admin123',
         role:'',
       }
     },
 
     methods:{
-      loginClicked(){
-        console.log("Login button clicked,");
-        try{
-          for(const user of this.user_admin){
-            if(user.username === this.username || user.email === this.username 
-            && user.password === this.password){
-             console.log(user.role + ' ' + user.username + ' logged in');
-             router.push('/admin-dashboard');
-            } else {
-              console.log('but incorrect credentials');
+      async loginClicked(){
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, this.username, this.password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            if(user.email === 'testdev@hotmail.com'){
+              router.push('/admin-dashboard');
             }
-          }
-        }catch(e){
-          console.log('[Error]: ' + e);
-        }
+           
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+        
       },
       roleSelect(){
         console.log(this.role);
@@ -121,6 +114,9 @@ import router from '../router';
       //change text on hover
      
     },
+    created(){
+      
+    }
   };
 </script>
 

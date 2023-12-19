@@ -7,8 +7,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import App from './App.vue'
 import '../src/components/stylesheets/transitions.css'
-
-
+import { auth } from './firebase';
+import { db } from './firebase';
 createApp(App)
+.use(auth)
+.use(db)
 .use(router)
 .mount('#app')
